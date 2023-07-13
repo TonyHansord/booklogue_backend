@@ -20,6 +20,8 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: booklogue
+  password: <%= ENV["BOOKLOGUE_DATABASE_PASSWORD"] %>
 
 development:
   <<: *default
@@ -82,5 +84,5 @@ test:
 production:
   <<: *default
   database: Booklogue_production
-  username: Booklogue
+  username: booklogue
   password: <%= ENV["BOOKLOGUE_DATABASE_PASSWORD"] %>

@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
-  resources :genres
-  resources :authors
-  resources :notes
-  resources :books
+  get "/me/:book_id", to: "books#show"
+  post "/me/:book_id", to: "books#create"
 
   get "/me", to: "users#show"
   post "/signup", to: "users#create"

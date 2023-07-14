@@ -1,6 +1,15 @@
 Rails.application.routes.draw do
-  get "/me/:book_id", to: "books#show"
-  post "/me/:book_id", to: "books#create"
+  get "/books", to: "books#index"
+  get "/me/books", to: "books#my_books"
+
+  get "/me/books/:book_id/notes", to: "notes#index"
+  post "/me/books/:book_id/notes", to: "notes#create"
+
+  get "/books/:book_id", to: "books#show"
+  post "/books/:book_id", to: "books#add_to_my_books"
+
+  # get "/me/:book_id", to: "books#show"
+  # post "/me/:book_id", to: "books#create"
 
   get "/me", to: "users#show"
   post "/signup", to: "users#create"

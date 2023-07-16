@@ -168,6 +168,7 @@ GEM
     rspec-expectations (3.12.3)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.12.0)
+    rspec-json_expectations (2.2.0)
     rspec-mocks (3.12.6)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.12.0)
@@ -180,6 +181,8 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.12.1)
+    shoulda-matchers (4.5.1)
+      activesupport (>= 4.2.0)
     thor (1.2.2)
     timeout (0.4.0)
     tzinfo (2.0.6)
@@ -203,7 +206,9 @@ DEPENDENCIES
   puma (~> 5.0)
   rack-cors
   rails (~> 7.0.6)
+  rspec-json_expectations
   rspec-rails (~> 5.0.0)
+  shoulda-matchers (~> 4.0)
   tzinfo-data
 
 RUBY VERSION

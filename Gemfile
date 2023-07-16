@@ -33,6 +33,11 @@ group :development do
   # gem "spring"
 end
 
+group :test do
+  gem 'rspec-json_expectations'
+  gem 'shoulda-matchers', '~> 4.0'
+end
+
 gem "active_model_serializers", "~> 0.10.12"
 
 gem "bcrypt", "~> 3.1.7"

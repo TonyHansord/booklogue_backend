@@ -22,6 +22,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    user = User.find(session[:user_id])
+    session.delete :user_id
+    user.destroy
+    render json: { message: "Account successfully deleted" }
+  end
+
   private
 
   def user_params

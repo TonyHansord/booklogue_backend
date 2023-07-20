@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_14_090239) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_20_232559) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,9 +21,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_14_090239) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "authors_books", force: :cascade do |t|
+    t.bigint "book_id", null: false
+    t.bigint "author_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_authors_books_on_author_id"
+    t.index ["book_id"], name: "index_authors_books_on_book_id"
+  end
+
   create_table "books", force: :cascade do |t|
     t.string "title"
-    t.integer "author_id"
     t.integer "genre_id"
     t.string "format"
     t.datetime "created_at", null: false
@@ -47,11 +55,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_14_090239) do
   end
 
   create_table "notes", force: :cascade do |t|
+    t.integer "book_id"
     t.string "subject"
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "book_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -63,6 +71,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_14_090239) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "authors_books", "authors"
+  add_foreign_key "authors_books", "books"
   add_foreign_key "books_users", "books"
   add_foreign_key "books_users", "users"
 end

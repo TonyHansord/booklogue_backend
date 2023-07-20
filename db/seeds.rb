@@ -21,5 +21,6 @@ end
 puts "🌱 Seeding Books"
 
 10.times do
-  Book.create(title: Faker::Book.title, author_id: Author.all.sample.id, genre_id: Genre.all.sample.id)
+  book = Book.create(title: Faker::Book.title, genre_id: Genre.all.sample.id)
+  book.authors << Author.all.sample
 end

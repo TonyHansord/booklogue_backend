@@ -30,19 +30,25 @@ class BooksController < ApplicationController
     render json: user, include: :books
   end
 
-  #   def create
-  #     book = Book.create(book_params)
+  def create
+    book = Book.create(book_params)
 
-  #     if book.valid?
-  #       render json: book, status: :created
-  #     else
-  #       render json: { errors: book.errors.full_messages }, status: :unprocessable_entity
-  #     end
-  #   end
+    author = Author.find(params[:author_id])
 
-  #   private
+    book.authors << Author.find(params[:author_id])
+    if book.valid?
+      # book.authors << Author.find(params[:author_id])
+      user = User.find(session[:user_id])
+      user.books << book
+      render json: book, status: :created
+    else
+      render json: { errors: book.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
 
-  #   def book_params
-  #     params.permit(:title, :author, :description, :user_id)
-  #   end
+  private
+
+  def book_params
+    params.permit(:title, :description, :genre_id, :author_id)
+  end
 end

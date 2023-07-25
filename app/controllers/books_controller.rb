@@ -31,11 +31,12 @@ class BooksController < ApplicationController
   end
 
   def create
-    book = Book.create(book_params)
+    book = Book.create(title: params[:title], genre_id: params[:genre_id])
 
     author = Author.find(params[:author_id])
 
     book.authors << Author.find(params[:author_id])
+
     if book.valid?
       # book.authors << Author.find(params[:author_id])
       user = User.find(session[:user_id])
@@ -49,6 +50,6 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.permit(:title, :description, :genre_id, :author_id)
+    params.permit(:title, :genre_id, :author_id)
   end
 end

@@ -7,8 +7,13 @@ class AuthorsController < ApplicationController
   end
 
   def create
-    author = Author.create(author_params)
-    render json: author
+    author = Author.find_by(first_name: params[:first_name], last_name: params[:last_name])
+    if author
+      render json: author
+    else
+      new_author = Author.create(author_params)
+      render json: new_author
+    end
   end
 
   private

@@ -4,7 +4,7 @@ class BooksController < ApplicationController
   wrap_parameters format: []
 
   def index
-    books = Book.all
+    books = Book.all.order(:created_at).reverse
     render json: books
   end
 

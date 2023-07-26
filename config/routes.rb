@@ -14,6 +14,11 @@ Rails.application.routes.draw do
 
   get "/genres", to: "genres#index"
 
+  get "/me/notes", to: "notes#my_notes"
+  post "/me/notes", to: "notes#create"
+  patch "/me/notes/:note_id", to: "notes#update"
+  delete "/me/notes/:note_id", to: "notes#destroy"
+
   get "/me", to: "users#show"
   post "/signup", to: "users#create"
   delete "/me", to: "users#destroy"

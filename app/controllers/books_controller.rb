@@ -26,8 +26,14 @@ class BooksController < ApplicationController
   def add_to_my_books
     book = Book.find(params[:book_id])
     user = User.find(session[:user_id])
-    user.books << book
-    render json: user, include: :books
+
+    if user.books.include?(book)
+      render json: { errors: ["Book already in your library"] }, status: :unprocessable_entity
+      return
+    else
+      user.books << book
+      render json: user, include: :books
+    end
   end
 
   def create
@@ -45,6 +51,13 @@ class BooksController < ApplicationController
     else
       render json: { errors: book.errors.full_messages }, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    book = Book.find(params[:book_id])
+    user = User.find(session[:user_id])
+    user.books.delete(book)
+    render json: user, include: :books, status: :ok
   end
 
   private

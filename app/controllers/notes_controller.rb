@@ -1,6 +1,7 @@
 class NotesController < ApplicationController
   before_action :authorize
   wrap_parameters format: []
+  rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
   def index
     book = get_book
@@ -22,6 +23,12 @@ class NotesController < ApplicationController
     note = book.notes.find(params[:id])
     note.update(note_params)
     render json: note
+  end
+
+  def destroy
+    note = Note.find(params[:note_id])
+    note.destroy
+    head :no_content
   end
 
   private

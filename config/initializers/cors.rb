@@ -7,7 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins "https://booklogue-backend.onrender.com"
+    origins "localhost:3000", "https://booklogue.netlify.app"
 
     resource "*",
              headers: :any,

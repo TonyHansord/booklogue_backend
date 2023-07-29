@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :authorize, [:create, :show]
+  skip_before_action :authorize, only: [:create, :show]
   wrap_parameters format: []
 
   def show

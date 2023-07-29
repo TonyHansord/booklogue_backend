@@ -10,21 +10,8 @@ Author.destroy_all
 Genre.destroy_all
 Book.destroy_all
 
-puts "🌱 Seeding Authors"
-
-10.times do
-  Author.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name)
-end
-
 puts "🌱 Seeding Genres"
 
-10.times do
+50.times do
   Genre.create(name: Faker::Book.genre)
-end
-
-puts "🌱 Seeding Books"
-
-10.times do
-  book = Book.create(title: Faker::Book.title, genre_id: Genre.all.sample.id)
-  book.authors << Author.all.sample
 end
